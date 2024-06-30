@@ -7,13 +7,13 @@ class User(UserMixin):
         self.id = None
         self.active = None
         self._is_authenticated = False
+        self.created_at = None
+        self.display_name = None
+        self.hashed_password = None
 
         @property
         def is_authenticated(self):
             return self._is_authenticated
-        
-        def get_id():
-            return self.id
         
         def set_authentication(self, auth_status = True):
             self._is_authenticated = auth_status
