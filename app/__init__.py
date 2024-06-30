@@ -1,5 +1,5 @@
 from flask import Flask
-from .models import init_models
+from .models import init_models, supabase
 from .routes import register_routes
 #from .utils import init_utils
 from .utils.auth_utils import login_manager
