@@ -43,11 +43,8 @@ export default function Home() {
 
       <button onClick = {updateUser}>the button to update the user</button>
 
-      <button onClick = {addUser}>the button to add a new user!</button>
+      {/* <button onClick = {addUser}>the button to add a new user!</button>*/}
 
-
-
-      
     </main>
   );
 }

@@ -1,14 +1,15 @@
 from ..models import User, supabase
 from uuid import uuid4
 
-def get_user(user_id: str) -> str:
+def get_user(username: str) -> str:
     try:
         response = (
             supabase.table("users")
             .select("*")
-            .eq("id", user_id)
+            .eq("display_name", username)
             .execute()
         )
+        print(response.data[0])
         return response.data[0]
     except:
         return None
@@ -39,6 +40,7 @@ def json_dict_to_user(dict_input) -> User:
     return user
 
 def create_user(id: str = str(uuid4()), display_name: str = "", hashed_password: str = "") -> dict[any]:
+    print("calling create_user")
     try:
         response = (
             supabase.table("users")

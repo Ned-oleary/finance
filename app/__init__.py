@@ -1,8 +1,9 @@
 from flask import Flask
 from .models import init_models, supabase
 from .routes import register_routes
+
 #from .utils import init_utils
-from .utils.auth_utils import login_manager
+#from .utils.auth_utils import login_manager
 from flask_cors import CORS
 from flask_jwt_extended import JWTManager
 
@@ -14,5 +15,5 @@ def create_app() -> Flask:
     CORS(app, supports_credentials=True, resources={r"/*": {"origins": "http://localhost:3000"}})
     register_routes(app)
     init_models(app)
-    login_manager.init_app(app)
+    # login_manager.init_app(app)
     return(app)
