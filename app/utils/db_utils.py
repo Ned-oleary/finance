@@ -45,6 +45,7 @@ def create_user(id: str = str(uuid4()), display_name: str = "", hashed_password:
             .insert({"id": id, "display_name": display_name, "hashed_password": hashed_password})
             .execute()
         )
+        print(response)
         return response, 201
     except:
         response = {"message": "error: unsuccessful record creation"}

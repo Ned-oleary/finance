@@ -6,6 +6,7 @@ import getSession from "@/lib/getSession";
 import { SessionData } from "@/lib/getSession"
 import React, { useState, useEffect } from 'react';
 import updateUser from "@/lib/updateUser";
+import addUser from "@/lib/addUser";
 
 export default function Home() {
   const [session, setSession] = useState<SessionData | null>(null);
@@ -41,6 +42,8 @@ export default function Home() {
       <LoginButton/>
 
       <button onClick = {updateUser}>the button to update the user</button>
+
+      <button onClick = {addUser}>the button to add a new user!</button>
 
 
 
