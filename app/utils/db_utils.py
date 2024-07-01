@@ -1,4 +1,5 @@
 from ..models import User, supabase
+from uuid import uuid4
 
 def get_user(user_id: str) -> str:
     try:
@@ -36,6 +37,41 @@ def json_dict_to_user(dict_input) -> User:
     user.hashed_password = dict_input["hashed_password"]
     user.display_name = dict_input["display_name"]
     return user
+
+def create_user(id: str = str(uuid4()), display_name: str = "", hashed_password: str = "") -> dict[any]:
+    try:
+        response = (
+            supabase.table("users")
+            .insert({"id": id, "display_name": display_name, "hashed_password": hashed_password})
+            .execute()
+        )
+        return response, 201
+    except:
+        response = {"message": "error: unsuccessful record creation"}
+        return response, 401
+
+
+def update_user(id: str, **kwargs) -> dict[any]:
+    update_dict = {"id" : id}
+    for key, value in kwargs.items():
+        update_dict[key] = value
+
+    try:
+        response = (
+            supabase.table("users")
+            .update(update_dict)
+            .eq("id", id)
+            .execute()
+        )
+        return response, 201
+    except:
+        response = {"message": "error: unsuccessful record creation"}
+        return response, 401
+
+        
+
+
+
 
 
 

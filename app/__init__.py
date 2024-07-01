@@ -15,5 +15,4 @@ def create_app() -> Flask:
     register_routes(app)
     init_models(app)
     login_manager.init_app(app)
-    jwt = JWTManager(app)
     return(app)

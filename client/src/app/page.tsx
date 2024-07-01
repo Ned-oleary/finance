@@ -3,11 +3,12 @@
 import LogoutButton from "@/components/LogoutButton";
 import LoginButton from "@/components/LoginButton";
 import getSession from "@/lib/getSession";
+import { SessionData } from "@/lib/getSession"
 import React, { useState, useEffect } from 'react';
-
+import updateUser from "@/lib/updateUser";
 
 export default function Home() {
-  const [session, setSession] = useState('Loading...');
+  const [session, setSession] = useState<SessionData | null>(null);
 
 
   useEffect(() => {
@@ -22,7 +23,7 @@ export default function Home() {
         }
       } catch (error) {
         console.log(error);
-        setSession('Failed to load session');
+        //setSession('Failed to load session');
       }
     };
 
@@ -33,10 +34,15 @@ export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-center p-24 gap-4">
       
-      <p>Your session is: {session.display_name}</p>
+
+      <p>Your session is: {session ? session.display_name : 'Loading...'}</p>
       <LogoutButton/>
 
       <LoginButton/>
+
+      <button onClick = {updateUser}>the button to update the user</button>
+
+
 
       
     </main>
