@@ -1,7 +1,7 @@
 import {useState} from 'react'
 import { useRouter } from 'next/router';
 
-// import axios from 'axios';
+import axios from 'axios';
 
 
 const Login: React.FC = (event) => {
@@ -12,20 +12,33 @@ const Login: React.FC = (event) => {
     // const [token, setToken] = useState(null);
 
     // need to fix this later
-    const handleSubmit = async(event: React.FormEvent<HTMLFormElement>) => {
-      event.preventDefault(); // Prevent the default form submission behavior
-      const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/login`, {
-          method: "Post",
-          headers: {
-            "Content-type": "application/json",
-          },
-          body: JSON.stringify({username, password}),
-      });
-      const data = await response.json();
-      localStorage.setItem('access_token', data.access_token  );
-      if(data){
-        router.push('/');
+    const handleSubmit = async(event) => {
+      event.preventDefault();
+      const credentials = {username, password};
+
+      try{
+        const success = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/login`, credentials, { withCredentials: true });
+        console.log(success);
+        if(success){
+          router.push("/");
         }
+        else{
+          console.error("Failed login");
+        }
+      }
+      catch(error){
+        console.error("Failed login", error);
+
+      }
+
+    //   try {
+    //     const response = await axios.post('/login', credentials, { withCredentials: true });
+    //     return response.status === 200;
+    // } catch (error) {
+    //     console.error('Login failed', error);
+    //     return false;
+    // }
+    // };
     };
 
     return (
