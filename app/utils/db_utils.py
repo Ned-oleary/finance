@@ -11,6 +11,19 @@ def get_user(user_id: str) -> str:
         return response.data[0]
     except:
         return None
+    
+def match_username_and_password(display_name: str, hashed_password: hash) -> bool:
+    try:
+        response = (
+            supabase.table("users")
+            .select("*")
+            .eq("display_name", display_name)
+            .eq("hashed_password", hashed_password)
+            .execute()
+        )
+        return response.data[0]
+    except:
+        return None
 
 def exists_user(user_id: str) -> bool:
     return True if get_user(user_id) else False
