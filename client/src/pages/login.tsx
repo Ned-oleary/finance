@@ -1,40 +1,31 @@
 import {useState} from 'react'
+import { useRouter } from 'next/router';
+
 // import axios from 'axios';
 
 
 const Login: React.FC = (event) => {
+    const router = useRouter()
+
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     // const [token, setToken] = useState(null);
 
     // need to fix this later
     const handleSubmit = async(event: React.FormEvent<HTMLFormElement>) => {
-      event.preventDefault(); // Prevent the default form submission
-
-      try {
-        const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/auth/login`, {
-          method: 'POST',
+      event.preventDefault(); // Prevent the default form submission behavior
+      const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/login`, {
+          method: "Post",
           headers: {
-            'Content-Type': 'application/json',
+            "Content-type": "application/json",
           },
-          body: JSON.stringify({ username, password }),
-        });
-    
-        if (!response.ok) {
-          const errorDetails = await response.text();
-          throw new Error(`HTTP error! status: ${response.status}, details: ${errorDetails}`);
+          body: JSON.stringify({username, password}),
+      });
+      const data = await response.json();
+      localStorage.setItem('access_token', data.access_token  );
+      if(data){
+        router.push('/');
         }
-    
-        const data = await response.json();
-    
-        if (data.access_token) {
-          localStorage.setItem('token', data.access_token);
-        } else {
-          console.error('No access token received');
-        }
-      } catch (error) {
-        console.error('Error during fetch:', error);
-      }
     };
 
     return (

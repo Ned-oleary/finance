@@ -16,14 +16,13 @@ def login():
     found_user = get_user(username)
     if found_user:
         user = json_dict_to_user(found_user)
-        user.hashed_password = generate_password_hash("password")
+        user.hashed_password = generate_password_hash("password") # need a better way to handle this in the future
         print(user)
         if check_password_hash(user.hashed_password, password):
             user.set_authentication()
-            access_token = create_access_token(identity = {"username": user.id})
-            output = jsonify({'access_token': access_token})
-            print(output.data)
-            return output, 200
+            access_token = create_access_token(identity=user.id)
+            response = {"access_token":access_token}
+            return response
     return jsonify({"msg": "Bad username or password"}), 401
 
 @bp.route("/logout")
