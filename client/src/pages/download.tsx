@@ -93,7 +93,7 @@ const Download: React.FC = () => {
                     Logout
             </Button>
         </div>
-        <Card className= "flex-col p-12 border border-gray-300 rounded shadow-md bg-white justify-center items-center">
+        <Card className= "flex-col px-12 pt-12 pb-10 border border-gray-300 rounded shadow-md bg-white justify-center items-center">
           <div className="flex items-center w-full   min-w-[150px]">
             <Label className="min-w-[100px]">Ticker</Label>
             <Input placeholder="AAPL" className="min-w-[300px] border-slate-200 rounded" maxLength="9" onChangeCapture={e => setTickerSymbol(e.currentTarget.value)} />
@@ -112,7 +112,7 @@ const Download: React.FC = () => {
             </Select>
           </div>
           <div className = "flex w-full">
-          <Button className="m-auto w-full bg-black hover:bg-slate-800 active:translate-y-px text-white rounded mt-6" onClick = {handlePress}>Download your data</Button>
+          <Button className="m-auto w-full bg-black hover:bg-slate-800 active:translate-y-px text-white rounded mt-10" onClick = {handlePress}>Download your data</Button>
           </div>
         </Card>
       </main>      
