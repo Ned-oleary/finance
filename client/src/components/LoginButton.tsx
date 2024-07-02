@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button'
 import '../styles/globals.css' 
 import { useRouter } from 'next/navigation';
 
-
+/* deprecated -- to be deleted */
 const LoginButton: React.FC = () => {
     const router = useRouter();
 

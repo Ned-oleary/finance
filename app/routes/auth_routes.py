@@ -36,20 +36,21 @@ def get_session():
         return jsonify({"message": "Successfully identified user from session", "user_id": user["id"], "display_name": user["display_name"], }), 200
     else:
         return jsonify({"message": "No active session"}), 401
-    
-@bp.route("/update_self", methods = ["POST"])
-def update_self():
-    data = request.get_json()
-    user_id = data.pop("username", None)
-    if session and session.get("user_id") == user_id:
-        try:
-            response, status_code = update_user(user_id, **data)
-            return response, status_code
-        except:
-            print(f"Error: {Exception}")
-            return {"message": "Update failed"}, 500
-    else:
-        return {"message": "Unauthorized"}, 401
+
+## Didn't end up using this endpoint
+# @bp.route("/update_self", methods = ["POST"])
+# def update_self():
+#     data = request.get_json()
+#     user_id = data.pop("username", None)
+#     if session and session.get("user_id") == user_id:
+#         try:
+#             response, status_code = update_user(user_id, **data)
+#             return response, status_code
+#         except:
+#             print(f"Error: {Exception}")
+#             return {"message": "Update failed"}, 500
+#     else:
+#         return {"message": "Unauthorized"}, 401
     
 
 @bp.route("/add_user", methods = ["POST"])

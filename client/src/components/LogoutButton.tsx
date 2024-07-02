@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button'
 import {useRouter} from 'next/navigation'
 import '../styles/globals.css' 
 
+/* deprecated -- to be deleted */
 const LogoutButton: React.FC = () => {
     const router = useRouter();
 

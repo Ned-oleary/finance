@@ -52,7 +52,7 @@ def create_user(id: str = str(uuid4()), display_name: str = "", hashed_password:
         response = {"message": "error: unsuccessful record creation"}
         return response, 401
 
-
+# don't think I ended up using this anywhere
 def update_user(id: str, **kwargs) -> dict[any]:
     update_dict = {"id" : id}
     for key, value in kwargs.items():

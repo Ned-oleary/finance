@@ -4,6 +4,7 @@ export interface SessionData {
     display_name: string;
   }
 
+/* don't think this is in use anymore */
 export default async function updateUser(): Promise<any>{
     const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/update_self`, {
       method: "POST",

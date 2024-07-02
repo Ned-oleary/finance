@@ -1,6 +1,7 @@
 import React from 'react';
 import '../styles/globals.css' 
 
+/* deprecated - to be deleted */
 type ButtonProps = {
     onClick: () => void | Promise<Response>;
     children: React.ReactNode; 
