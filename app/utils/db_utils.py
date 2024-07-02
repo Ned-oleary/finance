@@ -1,6 +1,9 @@
 from ..models import User, supabase
 from uuid import uuid4
 
+## GENERAL NOTE:
+# ended up just using display name as a defacto unique identifier
+# should change these methods in the future to use the uuid
 def get_user(username: str) -> str:
     try:
         response = (
@@ -26,6 +29,7 @@ def match_username_and_password(display_name: str, hashed_password: hash) -> boo
     except:
         return None
 
+# might be able to remove this 
 def exists_user(user_id: str) -> bool:
     return True if get_user(user_id) else False
 
@@ -53,6 +57,7 @@ def create_user(id: str = str(uuid4()), display_name: str = "", hashed_password:
         return response, 401
 
 # don't think I ended up using this anywhere
+# likely can be removed
 def update_user(id: str, **kwargs) -> dict[any]:
     update_dict = {"id" : id}
     for key, value in kwargs.items():
