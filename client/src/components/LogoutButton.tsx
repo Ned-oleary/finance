@@ -1,6 +1,6 @@
 'use client'
 import React from 'react';
-import Button from '@/components/Button'
+import { Button } from '@/components/ui/button'
 import '../styles/globals.css' 
 
 const LogoutButton: React.FC = () => {
@@ -11,7 +11,7 @@ const LogoutButton: React.FC = () => {
       }
 
     return(
-        <Button onClick = {handleLogout}> Here is a button to press if you want to logout </Button>
+        <Button className = "w-2/5" onClick = {handleLogout}> Logout </Button>
     );
 };
 

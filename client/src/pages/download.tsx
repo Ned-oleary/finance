@@ -6,11 +6,13 @@ import {
     SelectTrigger,
     SelectValue,
   } from "@/components/ui/select"
+import { Input } from "@/components/ui/input"
 import '../styles/globals.css' 
 
 // add credentials check
 const Download: React.FC = () => {
     const [alphavantageFunction, setAlphavantageFunction] = useState<string | null>("BALANCE_SHEET");
+    const [tickerSymbol, setTickerSymbol] = useState<string | null>("");
 
     const handlePress = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
       event.preventDefault();
@@ -53,6 +55,7 @@ const Download: React.FC = () => {
       <main className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
         <p>Here's a download ... hopefully...</p>
         <button onClick = {handlePress}>here's the button you have to hit</button>
+        <Input placeholder="AAPL" maxLength = "9" onChangeCapture={e => setTickerSymbol(e.currentTarget.value)}  />
         <Select onValueChange = {setAlphavantageFunction}>
             <SelectTrigger className="w-[180px]">
                 <SelectValue placeholder="Financial statement" />

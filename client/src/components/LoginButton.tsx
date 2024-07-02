@@ -1,6 +1,6 @@
 'use client'
 import React from 'react';
-import Button from '@/components/Button'
+import { Button } from '@/components/ui/button'
 import '../styles/globals.css' 
 import { useRouter } from 'next/navigation';
 
@@ -14,7 +14,7 @@ const LoginButton: React.FC = () => {
       };
 
     return(
-        <Button onClick = {handleLoginButtonPress}> Here is a button to press if you want to login </Button>
+        <Button className = "absolute mx-[100px] my-5 bottom-0 inset-x-0" onClick = {handleLoginButtonPress}> Login </Button>
     );
 };
 

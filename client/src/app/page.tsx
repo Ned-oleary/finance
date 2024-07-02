@@ -7,6 +7,8 @@ import { SessionData } from "@/lib/getSession"
 import React, { useState, useEffect } from 'react';
 import updateUser from "@/lib/updateUser";
 import addUser from "@/lib/addUser";
+import { Button } from "@/components/ui/button"
+import { Card, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
 
 export default function Home() {
   const [session, setSession] = useState<SessionData | null>(null);
@@ -16,15 +18,14 @@ export default function Home() {
     const handleSession = async () => {
       try {
         const response = await getSession();
-        if (response.ok) { // Check if the HTTP response status is 200-299
-          const data = await response.json(); // Adjust this line to match the data format, use response.text() if it's text
-          setSession(data); // Make sure 'data' here is a string or something that can be rendered in JSX
+        if (response.ok) { 
+          const data = await response.json(); 
+          setSession(data); 
         } else {
           throw new Error('Failed to fetch session data');
         }
       } catch (error) {
         console.log(error);
-        //setSession('Failed to load session');
       }
     };
 
@@ -33,18 +34,24 @@ export default function Home() {
   
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center p-24 gap-4">
+    <main className="flex h-screen flex-col items-center justify-center p-24 gap-4">
+      
+      {/* <p>Your session is: {session ? session.display_name : 'Loading...'}</p>*/}
+      <Card className = "w-2/3 min-w-[400px] h-1/3 items-center justify-center relative">
+
+      
+      <CardHeader className = "text-center">
+        <CardTitle>AlphaVantage API wrapper</CardTitle>
+        <CardDescription>
+          You are not currently logged in.
+        </CardDescription>
+      </CardHeader>
+
       
 
-      <p>Your session is: {session ? session.display_name : 'Loading...'}</p>
-      <LogoutButton/>
+      <LoginButton />
 
-      <LoginButton/>
-
-      <button onClick = {updateUser}>the button to update the user</button>
-
-      {/* <button onClick = {addUser}>the button to add a new user!</button>*/}
-
+      </Card>
     </main>
   );
 }

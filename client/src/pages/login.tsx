@@ -1,6 +1,9 @@
 import {useState} from 'react'
 import { useRouter } from 'next/router';
-import Button from '@/components/Button';
+import { Button } from "@/components/ui/button"
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Card, CardTitle, CardHeader, CardDescription } from "@/components/ui/card";  
 import '../styles/globals.css' 
 import axios from 'axios';
 
@@ -32,34 +35,39 @@ const Login: React.FC = (event) => {
     };
 
     return (
-      <main className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
-          <div className="w-[400px] p-6 bg-white border border-gray-300 rounded shadow-md">
+      <main className="flex items-center justify-center h-screen">
+          <Card className="w-1/2 h-2/3 p-10 relative min-w-[400px]">
+            <CardHeader>
+            <CardTitle className = "text-center">Log in</CardTitle>
+            </CardHeader>
+            <div className = "flex w-full h-2/3 items-center justify-around ">
               <form onSubmit={handleSubmit} className="space-y-4">
                   <div className="flex items-center">
-                      <label htmlFor="username" className="w-[100px] pr-2 text-left">Username:</label>
-                      <input
+                      <Label htmlFor="username" className="w-[150px] pr-2 text-left">Username:</Label>
+                      <Input
                           id="username"
                           type="text"
-                          className="flex-1 p-2 border border-gray-300 rounded"
+                          className="w-[300]px border-slate-200 rounded"
                           value={username}
                           onChange={(e) => setUsername(e.target.value)}
                       />
                   </div>
                   <div className="flex items-center">
-                      <label htmlFor="password" className="w-[100px] pr-2 text-left">Password:</label>
-                      <input
+                      <Label htmlFor="password" className="w-[150px] pr-2 text-left">Password:</Label>
+                      <Input
                           id="password"
                           type="password"
-                          className="flex-1 p-2 border border-gray-300 rounded"
+                          className="w-[300]px border-slate-200 rounded"
                           value={password}
                           onChange={(e) => setPassword(e.target.value)}
                       />
                   </div>
-                  <button type="submit" className="w-full py-2 text-white bg-blue-500 rounded hover:bg-blue-600">
+                  <Button type="submit" className="w-full bg-black hover:bg-slate-800 active:translate-y-px text-white rounded" variant="primary">
                       Login
-                  </button>
+                  </Button>
               </form>
-          </div>
+              </div>
+          </Card>
       </main>
   );
 }; 
