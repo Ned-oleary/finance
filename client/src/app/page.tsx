@@ -34,23 +34,18 @@ export default function Home() {
   
 
   return (
-    <main className="flex h-screen flex-col items-center justify-center p-24 gap-4 bg-gray-100">
+    <main className="flex h-screen flex-col items-center justify-center p-36 gap-4 bg-gray-100">
       {/* <p>Your session is: {session ? session.display_name : 'Loading...'}</p>*/}
-      <Card className = "w-2/3 min-w-[400px] h-1/3 min-h-[200px] items-center justify-center relative">
-
-      
-      <CardHeader className = "text-center">
+      <Card className = "w-[500px] min-h-[300px] p-6 border border-gray-300 rounded shadow-md bg-white relative">
+      <CardHeader className = "border">
         <CardTitle>AlphaVantage API wrapper</CardTitle>
         <CardDescription>
           {session ? "Logged in as " + session.display_name : "You are not logged in"}
         </CardDescription>
       </CardHeader>
-
-      
-
-      {session ? <LogoutButton/> : <LoginButton />}
-      
-
+        <div className = "w-full relative border">
+          {session ? <LogoutButton/> : <LoginButton/>}
+        </div>
       </Card>
     </main>
   );
