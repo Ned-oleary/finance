@@ -2,6 +2,7 @@ import {useState} from 'react'
 import { useRouter } from 'next/router';
 import '../styles/globals.css' 
 import addUser from "@/lib/addUser"
+import { Card } from "@/components/ui/card"
 
 
 const CreateAccount: React.FC = (event) => {
@@ -31,6 +32,7 @@ const CreateAccount: React.FC = (event) => {
     return (
       <main className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
         <h1>This is the page for creating an account!</h1>
+        <Card>
           <div className="w-[400px] p-6 bg-white border border-gray-300 rounded shadow-md">
               <form onSubmit={handleSubmit} className="space-y-4">
                   <div className="flex items-center">
@@ -58,6 +60,7 @@ const CreateAccount: React.FC = (event) => {
                   </button>
               </form>
           </div>
+          </Card>
       </main>
   );
 }; 

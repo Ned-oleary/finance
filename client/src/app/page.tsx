@@ -43,7 +43,7 @@ export default function Home() {
       <CardHeader className = "text-center">
         <CardTitle>AlphaVantage API wrapper</CardTitle>
         <CardDescription>
-          You are not currently logged in.
+          {session ? "Logged in as " + session.display_name : "You are not logged in"}
         </CardDescription>
       </CardHeader>
 
