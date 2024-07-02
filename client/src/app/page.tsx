@@ -34,10 +34,9 @@ export default function Home() {
   
 
   return (
-    <main className="flex h-screen flex-col items-center justify-center p-24 gap-4">
-      
+    <main className="flex h-screen flex-col items-center justify-center p-24 gap-4 bg-gray-100">
       {/* <p>Your session is: {session ? session.display_name : 'Loading...'}</p>*/}
-      <Card className = "w-2/3 min-w-[400px] h-1/3 items-center justify-center relative">
+      <Card className = "w-2/3 min-w-[400px] h-1/3 min-h-[200px] items-center justify-center relative">
 
       
       <CardHeader className = "text-center">
@@ -49,7 +48,8 @@ export default function Home() {
 
       
 
-      <LoginButton />
+      {session ? <LogoutButton/> : <LoginButton />}
+      
 
       </Card>
     </main>

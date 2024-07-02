@@ -35,9 +35,9 @@ const Login: React.FC = (event) => {
     };
 
     return (
-      <main className="flex items-center justify-center h-screen">
-          <Card className="w-1/2 h-2/3 p-10 relative min-w-[400px]">
-            <CardHeader>
+      <main className="flex items-center justify-center h-screen bg-gray-100">
+      <Card className = "w-2/3 min-w-[400px] h-1/3 min-h-[200px] items-center justify-center relative bg-white">
+      <CardHeader>
             <CardTitle className = "text-center">Log in</CardTitle>
             </CardHeader>
             <div className = "flex w-full h-2/3 items-center justify-around ">
