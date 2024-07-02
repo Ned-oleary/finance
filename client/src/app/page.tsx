@@ -40,6 +40,10 @@ export default function Home() {
     router.push("/login");
     return response
   };
+
+  const handleCreateAccountRequest = () => {
+    router.push("/createAccount");
+  };
   
 
   return (
@@ -52,7 +56,8 @@ export default function Home() {
         </CardDescription>
       </CardHeader>
         <div className = "w-full relative justify-center items-center">
-          {session ? <Button className = "w-full bg-black hover:bg-slate-800 active:translate-y-px text-white rounded" onClick = {handleLogout}>Logout</Button> : <Button className = "w-full bg-black hover:bg-slate-800 active:translate-y-px text-white rounded" onClick = {loginRedirect}>Login</Button>}
+          {session ? <Button className = "w-full bg-black hover:bg-slate-800 active:translate-y-px text-white rounded my-1" onClick = {handleLogout}>Logout</Button> : <Button className = "w-full bg-black hover:bg-slate-800 active:translate-y-px text-white rounded" onClick = {loginRedirect}>Login</Button>}
+          {session ? null : <Button className = "w-full bg-slate-600 hover:bg-slate-500 active:translate-y-px text-white rounded my-1" onClick = {handleCreateAccountRequest}>Create an account</Button>}
         </div>
       </Card>
     </main>
