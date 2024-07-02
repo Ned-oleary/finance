@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import { Button } from "@/components/ui/button"
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { Card, CardTitle, CardHeader, CardDescription } from "@/components/ui/card";  
+import { Card, CardTitle, CardHeader } from "@/components/ui/card";  
 import '../styles/globals.css' 
 import axios from 'axios';
 import {SessionData} from "@/lib/getSession"

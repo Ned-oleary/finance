@@ -23,10 +23,12 @@ const CreateAccount: React.FC = (event) => {
         if(response){
           router.push("/login");
         }
+        // TODO: add better alerts
         else{
           console.error("Failed login");
         }
       }
+      // TODO: add better alerts
       catch(error){
         console.error("Failed login", error);
       }

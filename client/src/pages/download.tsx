@@ -13,8 +13,6 @@ import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Card, CardHeader, CardTitle } from "@/components/ui/card"
 import { Label } from "@/components/ui/label"
-import LogoutButton from '@/components/LogoutButton'
-
 
 import '../styles/globals.css' 
 
