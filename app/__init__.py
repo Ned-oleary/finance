@@ -3,6 +3,7 @@ from .models import init_models
 from .routes import register_routes
 from flask_cors import CORS
 
+# NOTE: hardcoded CORS with localhost:3000 for NextJS frontend -- change later
 
 def create_app() -> Flask:
     app = Flask(__name__)

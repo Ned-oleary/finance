@@ -1,6 +1,9 @@
+## in retrospect, there's no need at all for the User class to inherit from UserMixin
+## in fact, I'm not sure there's any need for a User class at all
+## in the future, should look at nixing this bit of code altogether
+
 from flask_login import UserMixin
 
-## define class for a user
 class User(UserMixin):
 
     def __init__(self):

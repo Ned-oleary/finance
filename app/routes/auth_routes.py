@@ -1,6 +1,6 @@
 from flask import Blueprint, request, jsonify
 from ..models import User
-from ..utils.db_utils import get_user, json_dict_to_user, update_user, create_user
+from ..utils.db_utils import get_user, json_dict_to_user, create_user #removed update_user
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask import session
 
@@ -41,7 +41,7 @@ def get_session():
 # @bp.route("/update_self", methods = ["POST"])
 # def update_self():
 #     data = request.get_json()
-#     user_id = data.pop("username", None)
+#     user_id = data.pop("username", None) # kind of a neat trick
 #     if session and session.get("user_id") == user_id:
 #         try:
 #             response, status_code = update_user(user_id, **data)
