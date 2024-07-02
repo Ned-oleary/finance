@@ -14,7 +14,7 @@ const LoginButton: React.FC = () => {
       };
 
     return(
-        <Button className = "w-full relative mx-2 my-5 bottom-0 inset-x-1" onClick = {handleLoginButtonPress}> Login </Button>
+        <Button className = "absolute mx-[100px] my-5 bottom-0 inset-x-0" onClick = {handleLoginButtonPress}> Login </Button>
     );
 };
 

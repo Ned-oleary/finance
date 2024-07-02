@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { useRouter } from 'next/navigation'
 import {
     Select,
     SelectContent,
@@ -6,6 +7,8 @@ import {
     SelectTrigger,
     SelectValue,
   } from "@/components/ui/select"
+import { SessionData } from "@/lib/getSession"
+import getSession from "@/lib/getSession"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Card, CardHeader, CardTitle } from "@/components/ui/card"
@@ -17,8 +20,36 @@ import '../styles/globals.css'
 
 // add credentials check
 const Download: React.FC = () => {
+
+    const router = useRouter();
+    const [session, setSession] = useState<SessionData | null>("");
     const [alphavantageFunction, setAlphavantageFunction] = useState<string | null>("BALANCE_SHEET");
     const [tickerSymbol, setTickerSymbol] = useState<string | null>("");
+
+    useEffect(() => {
+      const handleSession = async () => {
+        try {
+          const response = await getSession();
+          if (response.ok) { 
+            const data = await response.json(); 
+            setSession(data); 
+          } else {
+            throw new Error('Failed to fetch session data');
+          }
+        } catch (error) {
+          router.push("/");
+          console.log(error);
+        }
+      };
+  
+      handleSession();
+    }, []);
+
+    const handleLogout = async () => {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/logout`, {method: "POST", credentials: "include"});
+      await router.push("/");
+      return response
+    };
 
     const handlePress = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
       event.preventDefault();
@@ -59,9 +90,14 @@ const Download: React.FC = () => {
 
     return (
         <main className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
+        <div className = "flex w-2/3 absolute top-0  h-[200px] justify-end items-center">
+            <Button className="w-1/4  hover:bg-slate-200 active:translate-y-px text-black rounded " onClick = {handleLogout}>
+                    Logout
+            </Button>
+        </div>
         <Card className="bg-white w-2/3 min-w-[400px] flex flex-col items-center p-6">
           <CardHeader>
-            <CardTitle>Query the AlphaVantage API</CardTitle>
+            <CardTitle>Get all historical financials</CardTitle>
           </CardHeader>
           <div className="flex items-center w-2/3 my-2 px-2 lg:px-4 min-w-[150px]">
             <Label className="w-1/5 min-w-[60px]">Ticker</Label>

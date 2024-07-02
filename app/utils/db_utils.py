@@ -9,7 +9,6 @@ def get_user(username: str) -> str:
             .eq("display_name", username)
             .execute()
         )
-        print(response.data[0])
         return response.data[0]
     except:
         return None
