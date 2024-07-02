@@ -1,12 +1,21 @@
 import { useState } from 'react'
+import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+  } from "@/components/ui/select"
 import '../styles/globals.css' 
 
 // add credentials check
 const Download: React.FC = () => {
+    const [alphavantageFunction, setAlphavantageFunction] = useState<string | null>("BALANCE_SHEET");
+
     const handlePress = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
       event.preventDefault();
     
-      const handleAsyncPress = async () => {
+      const handleAsyncPress = async () => {        
         try{
             const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/av/download`, {
                 method: "POST",
@@ -14,7 +23,7 @@ const Download: React.FC = () => {
                   'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                  function: "BALANCE_SHEET",
+                  function: alphavantageFunction,
                   symbol: "AAPL"
                 })
               })
@@ -42,8 +51,19 @@ const Download: React.FC = () => {
 
     return (
       <main className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
-          <p>Here's a download ... hopefully...</p>
-          <button onClick = {handlePress}>here's the button you have to hit</button>
+        <p>Here's a download ... hopefully...</p>
+        <button onClick = {handlePress}>here's the button you have to hit</button>
+        <Select onValueChange = {setAlphavantageFunction}>
+            <SelectTrigger className="w-[180px]">
+                <SelectValue placeholder="Financial statement" />
+            </SelectTrigger>
+            <SelectContent>
+                <SelectItem value="BALANCE_SHEET">Balance sheet</SelectItem>
+                <SelectItem value="CASH_FLOW">Cash flow statement</SelectItem>
+                <SelectItem value="INCOME_STATEMENT">Income statement</SelectItem>
+            </SelectContent>
+        </Select>
+    
       </main>
   );
 }; 

@@ -15,6 +15,7 @@ def get_alphavantage_data(query_url: str, frequency: str = "quarterlyReports") -
     try:
         response = requests.get(query_url)
         response_json = response.json()
+        print(response_json)
         response_subset = response_json[frequency]
         return response_subset
     except:

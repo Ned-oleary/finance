@@ -12,6 +12,7 @@ def download():
     symbol = data["symbol"]
 
     query_url = construct_query_url(function = function, symbol = symbol)
+    print(query_url)
     av_list = get_alphavantage_data(query_url= query_url)
 
     output = io.StringIO()
@@ -24,7 +25,7 @@ def download():
 
     for dicts in av_list:
         temp_dict = {}
-        for i in range(0, len(column_names)): # no idea why the fuck this was broken for a while
+        for i in range(0, len(column_names)): 
             temp_dict[column_names[i]] = dicts[column_names[i]]
         writer.writerow(temp_dict.values())
     
