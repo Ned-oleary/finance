@@ -93,18 +93,15 @@ const Download: React.FC = () => {
                     Logout
             </Button>
         </div>
-        <Card className="bg-white w-2/3 min-w-[400px] flex flex-col items-center p-6">
-          <CardHeader>
-            <CardTitle>Get all historical financials</CardTitle>
-          </CardHeader>
-          <div className="flex items-center w-2/3 my-2 px-2 lg:px-4 min-w-[150px]">
-            <Label className="w-1/5 min-w-[60px]">Ticker</Label>
-            <Input placeholder="AAPL" className="w-full min-w-[100px] border-slate-200 rounded" maxLength="9" onChangeCapture={e => setTickerSymbol(e.currentTarget.value)} />
+        <Card className= "flex-col p-12 border border-gray-300 rounded shadow-md bg-white justify-center items-center">
+          <div className="flex items-center w-full   min-w-[150px]">
+            <Label className="min-w-[100px]">Ticker</Label>
+            <Input placeholder="AAPL" className="min-w-[300px] border-slate-200 rounded" maxLength="9" onChangeCapture={e => setTickerSymbol(e.currentTarget.value)} />
           </div>
-          <div className="flex items-center w-2/3 my-2 px-2 lg:px-4 min-w-[150px]">
-            <Label className="w-1/5 min-w-[60px]">Dataset</Label>
+          <div className="flex items-center w-full my-2   min-w-[150px]">
+            <Label className="min-w-[100px]">Dataset</Label>
             <Select onValueChange={setAlphavantageFunction}>
-              <SelectTrigger className="w-full min-w-[100px] border-slate-200 rounded">
+              <SelectTrigger className="wmin-w-[300px] border-slate-200 rounded">
                 <SelectValue placeholder="Financial statement" />
               </SelectTrigger>
               <SelectContent className="bg-white border-slate-200 rounded">
@@ -114,7 +111,9 @@ const Download: React.FC = () => {
               </SelectContent>
             </Select>
           </div>
-          <Button className="w-4/6 min-w-[150px] bg-black hover:bg-slate-800 active:translate-y-px text-white rounded my-5" onClick = {handlePress}>Download your data</Button>
+          <div className = "flex w-full">
+          <Button className="m-auto w-full bg-black hover:bg-slate-800 active:translate-y-px text-white rounded mt-6" onClick = {handlePress}>Download your data</Button>
+          </div>
         </Card>
       </main>      
   );
